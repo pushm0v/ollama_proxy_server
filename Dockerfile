@@ -29,6 +29,7 @@ COPY --from=builder /app ./
 
 # Copy application code
 COPY ./app ./app
+COPY ./startup.sh ./
 COPY gunicorn_conf.py .
 
 # Expose the port the app runs on

@@ -1,0 +1,15 @@
+services:
+  ollama-proxy:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    init: true
+    env_file:
+      - .env
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+    cap_add:
+      - NET_ADMIN
+    volumes:
+      - ../files/.env:/home/app/.env
+      - ../files/ollama_proxy.db:/home/app/ollama_proxy.db

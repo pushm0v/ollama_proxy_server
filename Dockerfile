@@ -4,10 +4,6 @@ FROM python:3.11-slim
 # Set working directory
 WORKDIR /home/app
 
-# Set a non-root user
-RUN addgroup --system app && adduser --system --group app
-USER app
-
 # Install poetry
 RUN pip install poetry
 

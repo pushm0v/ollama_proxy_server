@@ -12,7 +12,7 @@ COPY pyproject.toml ./
 
 # Install dependencies, without dev dependencies, into a virtual environment
 RUN poetry config virtualenvs.create false && \
-    poetry install --without dev --no-interaction --no-ansi
+    poetry install --no-root --without dev --no-interaction --no-ansi
 
 # --- Final Stage ---
 FROM python:3.11-slim

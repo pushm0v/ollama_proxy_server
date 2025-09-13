@@ -16,6 +16,8 @@ RUN poetry config virtualenvs.create false && \
 
 COPY ./app ./app
 COPY gunicorn_conf.py .
+COPY startup.sh .
+RUN chmod +x /home/app/startup.sh
 
 # Expose the port the app runs on
 EXPOSE 8080

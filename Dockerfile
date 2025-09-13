@@ -5,7 +5,7 @@ FROM python:3.11-slim as builder
 WORKDIR /app
 
 # Install poetry
-RUN pip install poetry
+RUN pip install poetry --no-root
 
 # Copy only dependency-defining files
 COPY pyproject.toml ./

@@ -5,7 +5,7 @@ services:
       dockerfile: Dockerfile
     init: true
     env_file:
-      - ../files/.env
+      - ../files/config/.env
     extra_hosts:
       - "host.docker.internal:host-gateway"
     cap_add:

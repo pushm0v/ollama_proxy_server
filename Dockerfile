@@ -15,7 +15,7 @@ RUN poetry config virtualenvs.create false && \
     poetry install --no-root --without dev --no-interaction --no-ansi
 
 # --- Final Stage ---
-FROM python:3.11-slim
+FROM python:3.11-slim-buster
 
 # Set a non-root user
 RUN addgroup --system app && adduser --system --group app

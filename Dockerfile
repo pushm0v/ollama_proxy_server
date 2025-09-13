@@ -1,8 +1,12 @@
 # --- Build Stage ---
-FROM python:3.11-slim as builder
+FROM python:3.11-slim
 
 # Set working directory
-WORKDIR /app
+WORKDIR /home/app
+
+# Set a non-root user
+RUN addgroup --system app && adduser --system --group app
+USER app
 
 # Install poetry
 RUN pip install poetry
@@ -14,22 +18,7 @@ COPY pyproject.toml ./
 RUN poetry config virtualenvs.create false && \
     poetry install --no-root --without dev --no-interaction --no-ansi
 
-# --- Final Stage ---
-FROM python:3.11-slim-buster
-
-# Set a non-root user
-RUN addgroup --system app && adduser --system --group app
-USER app
-
-# Set working directory
-WORKDIR /home/app
-
-# Copy virtual environment from builder stage
-COPY --from=builder /app ./
-
-# Copy application code
 COPY ./app ./app
-COPY ./startup.sh ./
 COPY gunicorn_conf.py .
 
 # Expose the port the app runs on

@@ -7,10 +7,8 @@ WORKDIR /app
 # Install poetry
 RUN pip install poetry
 
-RUN ls -al /app
-
 # Copy only dependency-defining files
-COPY poetry.lock pyproject.toml ./
+COPY pyproject.toml ./
 
 # Install dependencies, without dev dependencies, into a virtual environment
 RUN poetry config virtualenvs.create false && \
